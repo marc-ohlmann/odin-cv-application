@@ -1,40 +1,23 @@
 import React from "react";
+import CvEditableInput from "./CvEditableInput"
 
-// name
-// phone
-// email
-// address
 
-export default class CvContact extends React.Component {
+const contactInfo = (name, phone, email, address) => {
+  return {name, phone, email, address}
+};
+
+
+class CvContact extends CvEditableInput {
   constructor()
   {
     super();
 
     this.state = {
-      bEditMode: true,
-      name: "",
-      phone: "",
-      email: "",
-      address: "",
+      ...this.state,
+      contact: contactInfo("", "", "", ""),
     };
 
-    this.handleEditBtnClicked = this.handleEditBtnClicked.bind(this);
-    this.handleApplyBtnClicked = this.handleApplyBtnClicked.bind(this);
     this.handleInputChanged = this.handleInputChanged.bind(this);
-  }
-
-  handleEditBtnClicked()
-  {
-    this.setState({
-      bEditMode: true
-    });
-  }
-
-  handleApplyBtnClicked()
-  {
-    this.setState({
-      bEditMode: false
-    });
   }
 
   handleInputChanged()
@@ -45,30 +28,29 @@ export default class CvContact extends React.Component {
     let inputAddress = document.querySelector("#input-address").value;
 
     this.setState({
-      name: inputName,
-      phone: inputPhone,
-      email: inputEmail,
-      address: inputAddress
+      contact: contactInfo(inputName, inputPhone, inputEmail, inputAddress)
     });
   }
 
   render(){
     return this.state.bEditMode ? (
       <div>
-        <button id="applyBtn" onClick={this.handleApplyBtnClicked}>Apply</button>
-        <div><input type="text" id="input-name" name="name" value={this.state.name} onChange={this.handleInputChanged}/></div>
-        <div><input type="text" id="input-phone" name="phone" value={this.state.phone} onChange={this.handleInputChanged}/></div>
-        <div><input type="text" id="input-email" name="email" value={this.state.email} onChange={this.handleInputChanged}/></div>
-        <div><input type="text" id="input-address" name="address" value={this.state.address} onChange={this.handleInputChanged}/></div>
+        {super.render()}
+        <div>Name: <input type="text" id="input-name" name="name" value={this.state.contact.name} onChange={this.handleInputChanged}/></div>
+        <div>Phone: <input type="text" id="input-phone" name="phone" value={this.state.contact.phone} onChange={this.handleInputChanged}/></div>
+        <div>Email: <input type="text" id="input-email" name="email" value={this.state.contact.email} onChange={this.handleInputChanged}/></div>
+        <div>Address: <input type="text" id="input-address" name="address" value={this.state.contact.address} onChange={this.handleInputChanged}/></div>
       </div>
     ) : (
       <div>
-        <button id="editBtn" onClick={this.handleEditBtnClicked}>Edit</button>
-        <div>{this.state.name}</div>
-        <div>{this.state.phone}</div>
-        <div>{this.state.email}</div>
-        <div>{this.state.address}</div>
+        {super.render()}
+        <div>Name: {this.state.contact.name}</div>
+        <div>Phone: {this.state.contact.phone}</div>
+        <div>Email: {this.state.contact.email}</div>
+        <div>Address: {this.state.contact.address}</div>
       </div>
     );
   }
 }
+
+export {CvContact, contactInfo}
