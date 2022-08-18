@@ -1,7 +1,6 @@
 import React from "react";
-import CvContact from "./components/CvContact";
 
-export default class App extends React.Component {
+export default class CvEducation extends React.Component {
   constructor()
   {
     super();
@@ -10,7 +9,7 @@ export default class App extends React.Component {
   render(){
     return (
         <div>
-            <CvContact/>
+
         </div>
     );
   }

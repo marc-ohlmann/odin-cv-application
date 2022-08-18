@@ -1,0 +1,26 @@
+
+:root{
+    --error-color: red;
+    --valid-color: green;
+
+    --bright-background-color: lightblue;
+    --bright-border-color: yellow;
+    --bright-button-color: orange;
+    --bright-text-color: white;
+
+    --dark-background-color: blue;
+    --dark-border-color: darkblue;
+    --dark-button-color: purple;
+    --dark-text-color: black;
+}
+
+*{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+body{
+    background-color: var(--dark-background-color);
+}
